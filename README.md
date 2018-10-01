@@ -1,2 +1,2 @@
 # algoyard
-Algorithm implementation.
+Implement some algorithms with Golang.
