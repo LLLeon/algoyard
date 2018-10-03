@@ -30,22 +30,38 @@ func InsertAt(val int, at *ListNode) *ListNode {
 }
 
 // Remove removes the specified node.
-func Remove(node *ListNode) {
-	if node == nil {
+func Remove(head, toDelete *ListNode) {
+	if toDelete == nil {
 		return
 	}
 
-	if node.Next != nil {
-		oldNext := node.Next
+	// if toDelete is an intermediate node
+	if toDelete.Next != nil {
+		oldNext := toDelete.Next
 
-		node.Value = oldNext.Value
-		node.Next = oldNext.Next
+		toDelete.Value = oldNext.Value
+		toDelete.Next = oldNext.Next
 
-		oldNext.Value = 0
-		oldNext.Next = nil
+		oldNext = nil
 	} else {
-		node.Value = 0
-		node.Next = nil
+		// if only one node
+		if head == toDelete {
+			head = nil
+		} else {
+			node := head
+
+			// find the next-to-last node
+			for {
+				if node.Next == toDelete {
+					break
+				}
+				node = node.Next
+			}
+
+			node.Next = nil
+		}
+
+		toDelete = nil
 	}
 }
 
