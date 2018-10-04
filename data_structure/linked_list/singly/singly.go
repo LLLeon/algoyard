@@ -10,6 +10,7 @@ type ListNode struct {
 func NewListNode(val int) *ListNode {
 	return &ListNode{
 		Value: val,
+		Next:  nil,
 	}
 }
 
@@ -81,4 +82,42 @@ func insert(val int, at *ListNode) int {
 	}
 
 	return val
+}
+
+// ConstructList builds the linked list using a head interpolation method.
+func ConstructList(values []int) *ListNode {
+	head := &ListNode{Value: 0, Next: nil}
+
+	for i := 0; i < len(values); i++ {
+		node := &ListNode{Value: values[i], Next: nil}
+		node.Next = head.Next
+		head.Next = node
+	}
+
+	return head
+}
+
+// Reverse a linked list and return the head node of the linked list.
+func Reverse(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	var pre *ListNode = nil
+	curr := head
+	next := curr.Next
+
+	for {
+		if next == nil {
+			break
+		}
+
+		curr.Next = pre
+		pre = curr
+		curr = next
+		next = curr.Next
+	}
+
+	curr.Next = pre
+	return curr
 }
