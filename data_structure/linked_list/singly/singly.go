@@ -103,30 +103,6 @@ func Reverse(head *ListNode) *ListNode {
 		return head
 	}
 
-	var pre *ListNode = nil
-	curr := head
-	next := curr.Next
-
-	for {
-		if next == nil {
-			break
-		}
-
-		curr.Next = pre
-		pre = curr
-		curr = next
-		next = curr.Next
-	}
-
-	curr.Next = pre
-	return curr
-}
-
-func Reverse2(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
-		return head
-	}
-
 	var prev *ListNode = nil
 	curr := head
 
