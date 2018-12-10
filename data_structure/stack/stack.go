@@ -16,10 +16,18 @@ func NewArrayStack(size int64) *ArrayStack {
 	}
 }
 
-// Push an item to the top of the stack.
+// Push an item to the top of the stack, when the maximum
+// capacity is reached, capacity to double.
 func (as *ArrayStack) Push(item string) bool {
 	if as.count == as.size {
-		return false
+		newItems := make([]string, as.size*2)
+
+		for i, item := range as.items {
+			newItems[i] = item
+		}
+
+		as.items = newItems
+		as.size = as.size * 2
 	}
 
 	as.items[as.count] = item
