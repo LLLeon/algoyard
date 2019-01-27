@@ -97,6 +97,20 @@ func ConstructList(values []int) *ListNode {
 	return head
 }
 
+// constructListPositiveSeq builds the linked list using a head interpolation
+// method but with the positive sequence.
+func ConstructListPositiveSeq(values []int) *ListNode {
+	head := &ListNode{Value: 0, Next: nil}
+
+	for i := len(values) - 1; i >= 0; i-- {
+		node := &ListNode{Value: values[i], Next: nil}
+		node.Next = head.Next
+		head.Next = node
+	}
+
+	return head
+}
+
 // Reverse a linked list and return the head node of the linked list.
 func Reverse(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
@@ -114,8 +128,9 @@ func Reverse(head *ListNode) *ListNode {
 		temp := curr     // 1: record current node
 		curr = curr.Next // 2: move the current node backwards
 		temp.Next = prev // 3: point Next of the old current node to the previous node
-		prev = temp      // assign the prev to the old current node
+		prev = temp      // 4: assign the prev to the old current node
 	}
 
+	// returns the last node as the head of the reversed linked list.
 	return prev
 }
