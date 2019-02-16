@@ -47,3 +47,13 @@ func (as *ArrayStack) Pop() (string, bool) {
 
 	return item, true
 }
+
+// Top returns an item from the top of the stack.
+func (as *ArrayStack) Top() (string, bool) {
+	if as.count == 0 {
+		return "", false
+	}
+
+	item := as.items[as.count-1]
+	return item, true
+}
