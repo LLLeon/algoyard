@@ -134,3 +134,32 @@ func Reverse(head *ListNode) *ListNode {
 	// returns the last node as the head of the reversed linked list.
 	return prev
 }
+
+// FindKthTail returns the reciprocal Kth node.
+func FindKthTail(head *ListNode, k int) (*ListNode, bool) {
+	if head == nil || k <= 0 {
+		return nil, false
+	}
+
+	fastP := head
+	slowP := head
+
+	for i := 0; i < k; i++ {
+		if fastP != nil {
+			fastP = fastP.Next
+		} else {
+			return nil, false
+		}
+	}
+
+	for {
+		if fastP != nil {
+			fastP = fastP.Next
+			slowP = slowP.Next
+			continue
+		}
+		break
+	}
+
+	return slowP, true
+}
