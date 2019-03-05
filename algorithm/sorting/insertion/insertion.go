@@ -15,10 +15,12 @@ func InsertionSort(list []int, n int) []int {
 	}
 
 	for i := 1; i < n; i++ {
+		// the value to insert
 		value := list[i]
 		j := i - 1
 
-		fmt.Printf("enter j loop, value=%d\n", value)
+		fmt.Printf("the value to insert: list[%d] = %d\n", i, value)
+
 		// find the position to insert
 		for ; j >= 0; j-- {
 			if list[j] > value {
@@ -28,14 +30,15 @@ func InsertionSort(list []int, n int) []int {
 				break
 			}
 
-			fmt.Printf("i=%d, j=%d, list=%v\n", i, j, list)
+			fmt.Printf("i = %d, j = %d\n", i, j)
+			fmt.Printf("after moving list[%d], list ---> %v\n", j, list)
 		}
 
 		// insert data
 		list[j+1] = value
 
-		fmt.Printf("exit j loop, list[%d]=value=%d\n", j+1, list[j+1])
-		fmt.Printf("now list=%v\n", list)
+		fmt.Printf("the position to insert: list[%d]\n", j+1)
+		fmt.Printf("now list ---> %v\n", list)
 		fmt.Printf("\n")
 	}
 
