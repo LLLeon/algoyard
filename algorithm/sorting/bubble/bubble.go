@@ -8,6 +8,7 @@ import "fmt"
 // The worst situation: [6, 5, 4, 3, 2, 1], it takes six bubbles,
 // time complexity: O(n^2).
 // Average time complexity: O(n^2).
+// Space complexity: O(1).
 func BubbleSort(list []int, n int) []int {
 	if n <= 1 {
 		return list
