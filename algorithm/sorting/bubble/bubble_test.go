@@ -5,7 +5,7 @@ import (
 )
 
 func TestBubbleSort(t *testing.T) {
-	oldList := []int{4, 5, 6, 1, 2, 3, 3, 2}
+	oldList := []int{6, 5, 4, 3, 2, 1}
 	t.Log("Original list:", oldList)
 	newList := BubbleSort(oldList, len(oldList))
 	t.Log("Sorting result:", newList)
