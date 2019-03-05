@@ -1,8 +1,8 @@
 package queue
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func TestArrayQueue(t *testing.T) {
@@ -10,15 +10,35 @@ func TestArrayQueue(t *testing.T) {
 
 	for i := 0; i < 10; i++ {
 		if ok := q.Enqueue(i); !ok {
-			t.Error("enqueue error.")
+			t.Fatal("ArrayQueue enqueue error.")
 		}
 	}
 
 	for i := 0; i < 10; i++ {
 		item, ok := q.Dequeue()
 		if !ok {
-			t.Error("dequeue error")
+			t.Fatal("ArrayQueue dequeue error")
 		}
-		fmt.Printf("dequeue item: %d\n", item)
+		fmt.Printf("ArrayQueue dequeue item: %d\n", item)
+	}
+}
+
+func TestCircularQueue(t *testing.T) {
+	q := NewCircularQueue(10)
+
+	// When the queue is full, no data is stored at the tail location,
+	// so the circular queue wastes one storage space.
+	for i := 0; i < 9; i++ {
+		if ok := q.Enqueue(i); !ok {
+			t.Fatal("CircularQueue enqueue error.")
+		}
+	}
+
+	for i := 0; i < 9; i++ {
+		item, ok := q.Dequeue()
+		if !ok {
+			t.Fatal("CircularQueue dequeue error")
+		}
+		fmt.Printf("CircularQueue dequeue item: %d\n", item)
 	}
 }
