@@ -59,6 +59,7 @@ func merge(list []int, start, mid, end int) {
 		k++
 	}
 
-	// copy the numbers from tmpList into the original list.
+	// copies the sorted numbers from tmpList to the original
+	// position of the original list.
 	copy(list[start:end+1], tmpList)
 }
