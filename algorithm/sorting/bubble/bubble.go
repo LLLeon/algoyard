@@ -21,9 +21,7 @@ func BubbleSort(list []int, n int) []int {
 		fmt.Printf("enter j loop\n")
 		for j := 0; j < n-i-1; j++ {
 			if list[j] > list[j+1] {
-				tmp := list[j]
-				list[j] = list[j+1]
-				list[j+1] = tmp
+				list[j], list[j+1] = list[j+1], list[j]
 				isExchange = true
 
 				fmt.Printf("i=%d, j=%d, list=%v\n", i, j, list)
