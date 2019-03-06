@@ -8,7 +8,7 @@ import "fmt"
 // Average time complexity: O(n^2).
 // Space complexity: O(1).
 func SelectionSort(list []int, n int) []int {
-	if n <= 0 {
+	if n <= 1 {
 		return list
 	}
 
