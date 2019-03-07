@@ -59,3 +59,33 @@ func partition(list []int, start, end int) int {
 	// returns the index of pivot
 	return i
 }
+
+// QSort is another implementation of quick sort.
+// This implementation is more intuitive.
+// Compared with this implementation, the above is
+// simply too ugly.
+func QSort(list []int, n int) {
+	if n <= 1 {
+		return
+	}
+
+	pivot := list[0]
+	head, tail := 0, n-1
+
+	for i := 1; i <= tail; {
+		if list[i] > pivot {
+			list[i], list[tail] = list[tail], list[i]
+			tail--
+		} else {
+			list[i], list[head] = list[head], list[i]
+			head++
+			i++
+		}
+	}
+
+	frontPart := list[:head]
+	latterPart := list[head+1:]
+
+	QSort(frontPart, len(frontPart))
+	QSort(latterPart, len(latterPart))
+}
