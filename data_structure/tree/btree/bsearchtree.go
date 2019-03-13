@@ -150,11 +150,8 @@ func MaxDepth(root *Node) int {
 		return 0
 	}
 
-	left := root.left
-	right := root.right
-
-	lDepth := MaxDepth(left)
-	rDepth := MaxDepth(right)
+	lDepth := MaxDepth(root.left)
+	rDepth := MaxDepth(root.right)
 	max := int(math.Max(float64(lDepth), float64(rDepth))) + 1
 
 	return max
