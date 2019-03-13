@@ -163,3 +163,32 @@ func FindKthTail(head *ListNode, k int) (*ListNode, bool) {
 
 	return slowP, true
 }
+
+// GetRingLength returns the length of the ring in a linked list.
+func GetRingLength(head *ListNode) int {
+	slowP := head
+	fastP := head
+
+	for slowP != nil && fastP.Next != nil {
+		slowP = slowP.Next
+		fastP = fastP.Next.Next
+
+		// the two pointers meet for the first time
+		if slowP == fastP {
+			break
+		}
+	}
+
+	slowP = slowP.Next
+	fastP = fastP.Next.Next
+	length := 1
+
+	// loop to meet again
+	for slowP != fastP {
+		slowP = slowP.Next
+		fastP = fastP.Next.Next
+		length++
+	}
+
+	return length
+}
