@@ -152,13 +152,9 @@ func FindKthTail(head *ListNode, k int) (*ListNode, bool) {
 		}
 	}
 
-	for {
-		if fastP != nil {
-			fastP = fastP.Next
-			slowP = slowP.Next
-			continue
-		}
-		break
+	for fastP != nil {
+		fastP = fastP.Next
+		slowP = slowP.Next
 	}
 
 	return slowP, true
