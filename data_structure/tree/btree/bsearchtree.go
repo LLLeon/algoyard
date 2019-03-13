@@ -1,5 +1,7 @@
 package btree
 
+import "math"
+
 // Find implements a binary search tree search for specified data.
 func Find(root *Node, data int) *Node {
 	if root.data == data {
@@ -140,4 +142,20 @@ func MinNode(root *Node) *Node {
 	}
 
 	return min
+}
+
+// MaxDepth returns the max depth of the binary tree.
+func MaxDepth(root *Node) int {
+	if root == nil {
+		return 0
+	}
+
+	left := root.left
+	right := root.right
+
+	lDepth := MaxDepth(left)
+	rDepth := MaxDepth(right)
+	max := int(math.Max(float64(lDepth), float64(rDepth))) + 1
+
+	return max
 }
