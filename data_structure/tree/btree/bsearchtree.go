@@ -111,3 +111,33 @@ func Delete(root *Node, data int) {
 		pp.right = child
 	}
 }
+
+// MaxNode returns the largest node in the binary search tree.
+func MaxNode(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
+
+	max := root
+
+	for max.right != nil {
+		max = max.right
+	}
+
+	return max
+}
+
+// MinNode returns the minimum node in the binary search tree.
+func MinNode(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
+
+	min := root
+
+	for min.left != nil {
+		min = min.left
+	}
+
+	return min
+}
