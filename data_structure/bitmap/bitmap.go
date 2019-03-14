@@ -16,7 +16,7 @@ func (bm BitMap) Set(value uint) {
 	}
 
 	bitIndex := value % 8
-	([]byte(bm))[byteIndex] |= 1 << bitIndex
+	bm[byteIndex] |= 1 << bitIndex
 }
 
 // Get check if value exists in the bitmap.
@@ -27,5 +27,5 @@ func (bm BitMap) Get(value uint) bool {
 	}
 
 	bitIndex := value % 8
-	return []byte(bm)[byteIndex]&(1<<bitIndex) != 0
+	return bm[byteIndex]&(1<<bitIndex) != 0
 }
