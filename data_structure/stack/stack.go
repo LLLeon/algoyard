@@ -57,3 +57,8 @@ func (as *ArrayStack) Top() (string, bool) {
 	item := as.items[as.count-1]
 	return item, true
 }
+
+// Size returns the size of the stace.
+func (as *ArrayStack) Size() int64 {
+	return as.size
+}
