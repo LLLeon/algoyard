@@ -9,6 +9,7 @@ func TestBitMap(t *testing.T) {
 		bm.Set(uint(i))
 	}
 
+	t.Logf("now bm: %v\n", bm)
 	for i := 0; i <= 100; i += 10 {
 		if exists := bm.Get(uint(i)); !exists {
 			t.Logf("there is no value [%d] in the bitmap\n", i)
