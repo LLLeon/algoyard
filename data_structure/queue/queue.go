@@ -74,33 +74,70 @@ func NewCircularQueue(size int) *CircularQueue {
 	return &CircularQueue{
 		items: make([]int, size),
 		size:  size,
-		head:  0,
-		tail:  0,
+		head:  -1,
+		tail:  -1,
 	}
 }
 
 // Enqueue the item.
 func (cq *CircularQueue) Enqueue(item int) bool {
 	// queue is full
-	if (cq.tail+1)%cq.size == cq.head {
+	if cq.IsFull() {
 		return false
 	}
 
-	cq.items[cq.tail] = item
+	if cq.IsEmpty() {
+		cq.head = 0
+	}
+
 	cq.tail = (cq.tail + 1) % cq.size
+	cq.items[cq.tail] = item
 
 	return true
 }
 
-// Dequeue returns an item from the queue.
-func (cq *CircularQueue) Dequeue() (int, bool) {
+// Dequeue delete an item from the queue.
+func (cq *CircularQueue) Dequeue() bool {
 	// queue is empty
-	if cq.head == cq.tail {
-		return 0, false
+	if cq.IsEmpty() {
+		return false
 	}
 
-	item := cq.items[cq.head]
+	// the queue is empty
+	if cq.head == cq.tail {
+		cq.head = -1
+		cq.tail = -1
+
+		return true
+	}
+
 	cq.head = (cq.head + 1) % cq.size
 
-	return item, true
+	return true
+}
+
+// Front get the front item from the queue.
+func (cq *CircularQueue) Front() int {
+	if cq.IsEmpty() {
+		return -1
+	}
+
+	return cq.items[cq.head]
+}
+
+// Rear get the last item from the queue.
+func (cq *CircularQueue) Rear() int {
+	if cq.IsEmpty() {
+		return -1
+	}
+
+	return cq.items[cq.tail]
+}
+
+func (cq *CircularQueue) IsEmpty() bool {
+	return cq.head == -1
+}
+
+func (cq *CircularQueue) IsFull() bool {
+	return (cq.tail+1)%cq.size == cq.head
 }
