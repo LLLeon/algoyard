@@ -17,8 +17,8 @@ func NewArrayQueue(size int) *ArrayQueue {
 	return &ArrayQueue{
 		items: make([]int, size),
 		size:  size,
-		head:  0,
-		tail:  0,
+		head:  -1,
+		tail:  -1,
 	}
 }
 
