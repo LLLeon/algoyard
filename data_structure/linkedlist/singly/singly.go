@@ -147,18 +147,18 @@ func ReverseRecursive(head *ListNode) *ListNode {
 	return last
 }
 
-var sussesor *ListNode
+var successor *ListNode
 
 // ReverseN reverse the first n nodes in the linked list.
 func ReverseN(head *ListNode, n int) *ListNode {
 	if n == 1 {
-		sussesor = head.Next
+		successor = head.Next
 		return head
 	}
 
 	last := ReverseN(head.Next, n-1)
 	head.Next.Next = head
-	head.Next = sussesor
+	head.Next = successor
 
 	return last
 }
