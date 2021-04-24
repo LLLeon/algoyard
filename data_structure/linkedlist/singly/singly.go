@@ -135,6 +135,18 @@ func Reverse(head *ListNode) *ListNode {
 	return prev
 }
 
+func ReverseRecursive(head *ListNode) *ListNode {
+	if head.Next == nil {
+		return head
+	}
+
+	last := ReverseRecursive(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+
+	return last
+}
+
 // FindKthTail returns the reciprocal Kth node.
 func FindKthTail(head *ListNode, k int) (*ListNode, bool) {
 	if head == nil || k <= 0 {
@@ -173,6 +185,10 @@ func GetRingLength(head *ListNode) int {
 		if slowP == fastP {
 			break
 		}
+	}
+
+	if slowP == nil || fastP.Next == nil {
+		return -1
 	}
 
 	slowP = slowP.Next
