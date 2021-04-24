@@ -147,6 +147,22 @@ func ReverseRecursive(head *ListNode) *ListNode {
 	return last
 }
 
+var sussesor *ListNode
+
+// ReverseN reverse the first n nodes in the linked list.
+func ReverseN(head *ListNode, n int) *ListNode {
+	if n == 1 {
+		sussesor = head.Next
+		return head
+	}
+
+	last := ReverseN(head.Next, n-1)
+	head.Next.Next = head
+	head.Next = sussesor
+
+	return last
+}
+
 // FindKthTail returns the reciprocal Kth node.
 func FindKthTail(head *ListNode, k int) (*ListNode, bool) {
 	if head == nil || k <= 0 {

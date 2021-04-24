@@ -111,6 +111,55 @@ func TestReverse(t *testing.T) {
 	t.Logf("the original head node: %d\n", node3.Next.Value)
 }
 
+func TestReverseN(t *testing.T) {
+	values := []int{1, 2, 3, 4, 5}
+
+	// 5 -> 4 -> 3 -> 2 -> 1
+	head := ConstructList(values)
+
+	t.Logf("head: %d\n", head.Value)
+
+	node1 := head.Next
+	t.Logf("node1: %d\n", node1.Value)
+
+	node2 := node1.Next
+	t.Logf("node2: %d\n", node2.Value)
+
+	node3 := node2.Next
+	t.Logf("node3: %d\n", node3.Value)
+
+	node4 := node3.Next
+	t.Logf("node4: %d\n", node4.Value)
+
+	node5 := node4.Next
+	t.Logf("node5: %d\n", node5.Value)
+
+	// 3 -> 4 -> 5 -> 2 -> 1
+	newHead := ReverseN(head.Next, 3)
+	node1 = newHead
+	if node1.Value == 3 {
+		t.Logf("new node1: %d\n", node1.Value)
+	} else {
+		t.Errorf("[error] new node1 want: %d, get: %d\n", 3, node1.Value)
+	}
+
+	node2 = node1.Next
+	if node2.Value == 4 {
+		t.Logf("new node2: %d\n", node2.Value)
+	} else {
+		t.Errorf("[error] new node2 want: %d, get: %d\n", 4, node2.Value)
+	}
+
+	node3 = node2.Next
+	if node3.Value == 5 {
+		t.Logf("new node3: %d\n", node3.Value)
+	} else {
+		t.Errorf("[error] new node3 want: %d, get: %d\n", 5, node2.Value)
+	}
+
+	t.Logf("the original head node: %d\n", node3.Next.Value)
+}
+
 func TestReverseRecursive(t *testing.T) {
 	values := []int{1, 2, 3}
 
